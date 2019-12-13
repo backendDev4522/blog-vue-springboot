@@ -18,7 +18,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "member")
+@Table(name = "members")
 @Getter 
 @Setter
 @ToString
@@ -28,7 +28,6 @@ import lombok.ToString;
 public class Member{
     @NonNull
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(name = "password" , nullable = false)
     private String password;
