@@ -7,33 +7,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-@Table(name="board")
 @ToString
+@Table(name="board")
 public class Board {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int bid;
+	private Long bid;
 	
-	@Column(nullable = false, length = 20)
-	private String id;
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	private Member member;
+	
 	@Column(nullable = false, length = 50)
 	private String title;
-	@Column(nullable = false)
+	
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String content;
+	
 	@Column(nullable = false, length = 50)
 	private String boardType;
-	@Column(nullable = true, length = 50)
-	private Date createdDate;
+	
+	@CreatedDate
+    @Column(updatable = false, name="reg_date")
+	private Date regDate;
+	
+	
+	@Builder
+	private Board(Member member, String title, String content, String boardType) {
+		this.member = member;
+		this.title = title;
+		this.content = content;
+		this.boardType = boardType;
+	}
 	
 	
 	

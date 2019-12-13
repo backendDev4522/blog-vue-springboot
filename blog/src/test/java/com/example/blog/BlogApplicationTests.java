@@ -1,4 +1,4 @@
-package com.example.blog;
+﻿package com.example.blog;
 
 import java.util.Calendar;
 
@@ -12,13 +12,14 @@ class BlogApplicationTests {
 
 	@Test
 	public void lombokTest() {
-		Board board = Board.builder()
-				.bid(1)
-				.title("exam")
-				.content("examlple")
-				.boardType("자유게시판")
-				.createdDate(Calendar.getInstance().getTime())
+		Board board = Board.builder().title("exam").content("examlple").boardType("자유게시판")
 				.build();
+		System.out.println(board);
 	}
-	
+
+	@Test
+	void contextLoads() {
+		System.out.println("Hello world!!");
+	}
+
 }
