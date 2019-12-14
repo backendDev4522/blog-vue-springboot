@@ -30,9 +30,14 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bid;
 	
-	@ManyToOne
-	@JoinColumn(name="member_id")
-	private Member member;
+	/* 연관관계 설정부분.
+	 * @ManyToOne
+	 * @JoinColumn(name="member_id") private Member member;
+	 */
+	
+	//먼저 연관관계를 생각하지 않은 CRUD 게시판을 만든 후 연관관계를 설정해준다.
+	@Column(nullable = false, length = 20)
+	private String writer;
 	
 	@Column(nullable = false, length = 50)
 	private String title;
@@ -49,8 +54,8 @@ public class Board {
 	
 	
 	@Builder
-	private Board(Member member, String title, String content, String boardType) {
-		this.member = member;
+	private Board(String writer, String title, String content, String boardType) {
+		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		this.boardType = boardType;
