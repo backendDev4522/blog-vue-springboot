@@ -41,7 +41,7 @@ public class Board extends TimeEntity{
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String content;
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 50,name="board_type")
 	private String boardType;
 
 
