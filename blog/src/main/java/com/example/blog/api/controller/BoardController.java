@@ -25,7 +25,7 @@ public class BoardController {
 	@PostMapping("/board")
 	public ResponseEntity<BoardDto> saveBoard(@RequestBody BoardDto boardDto){
 		boardService.saveBoard(boardDto);
-		return new ResponseEntity<BoardDto>(boardDto, HttpStatus.OK);
+		return new ResponseEntity(true, HttpStatus.OK);
 	}
 	
 	@GetMapping("/boards")
