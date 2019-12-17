@@ -2,7 +2,6 @@ package com.example.blog.api.servcie;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +11,7 @@ import com.example.blog.api.domain.Board;
 import com.example.blog.api.domain.BoardDto;
 import com.example.blog.api.repository.BoardRepository;
 
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -31,16 +31,7 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> boardEntities = boardRepository.findAll();
         List<BoardDto> boardDtoList = new ArrayList<>();
         for ( Board board : boardEntities) {
-            BoardDto boardDTO = BoardDto.builder()
-                    .bid(board.getBid())
-                    .title(board.getTitle())
-                    .content(board.getContent())
-                    .writer(board.getWriter())
-                    .createdDate(board.getCreatedDate())
-                    .updatedDate(board.getUpdatedDate())
-                    .build();
-
-            boardDtoList.add(boardDTO);
+            boardDtoList.add(entityToDto(board));
         }
         return boardDtoList;
     }
@@ -50,6 +41,30 @@ public class BoardServiceImpl implements BoardService {
 		Board board = boardRepository.findById(bid).get();
 		return entityToDto(board);
 	}
+	
+	@Transactional
+	public void updateBoard(BoardDto boardDto, Long bid) throws NotFoundException{
+		Board board = boardRepository.findById(bid).get();
+		if(board == null) {
+			throw new NotFoundException("id not founded");
+		}
+		if(boardDto.getTitle() != null) {
+			board.setTitle(boardDto.getTitle());
+		}
+		if(boardDto.getContent() != null) {
+			board.setContent(boardDto.getContent());
+		}
+		if(boardDto.getWriter()!= null) {
+			board.setWriter(boardDto.getWriter());
+		}
+		if(boardDto.getBoardType()!= null) {
+			board.setBoardType(boardDto.getBoardType());
+		} 
+		boardRepository.save(board);
+	}
+
+	
+
 	
 	public BoardDto entityToDto(Board board) {
 		BoardDto boardDto = BoardDto.builder()
@@ -62,6 +77,7 @@ public class BoardServiceImpl implements BoardService {
                   .build();
 		return boardDto;
 	}
+
 	
 	
 }
