@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -24,19 +23,15 @@ public class Member {
     @Column(length = 30)
     private String id;
 
-    @Setter
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
-    @Setter
     @Column(name = "name", nullable = false, length = 20)
     private String name;
 
-    @Setter
     @Column(name = "email", nullable = false, length = 40)
     private String email;
 
-    @Setter
     @Column(name = "address", nullable = false, length = 50)
     private String address;
 

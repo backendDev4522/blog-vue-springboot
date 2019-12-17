@@ -1,7 +1,8 @@
-package com.example.blog.api.dto.MemberDTO;
+package com.example.blog.api.dto;
 
 import com.example.blog.api.entity.Member;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,5 +26,14 @@ public class MemberDTO{
                 .email(this.email)
                 .address(this.address)
                 .build();
+    }
+
+    @Builder
+    MemberDTO(String id, String password , String name, String email, String address){
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.address = address;
     }
 }
