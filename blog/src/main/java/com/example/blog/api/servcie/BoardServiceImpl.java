@@ -2,6 +2,7 @@ package com.example.blog.api.servcie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -44,5 +45,23 @@ public class BoardServiceImpl implements BoardService {
         return boardDtoList;
     }
 
+	@Transactional
+	public BoardDto getBoard(Long bid) {
+		Board board = boardRepository.findById(bid).get();
+		return entityToDto(board);
+	}
+	
+	public BoardDto entityToDto(Board board) {
+		BoardDto boardDto = BoardDto.builder()
+				.bid(board.getBid())
+				  .title(board.getTitle())
+                  .content(board.getContent())
+                  .writer(board.getWriter())
+                  .createdDate(board.getCreatedDate())
+                  .updatedDate(board.getUpdatedDate())
+                  .build();
+		return boardDto;
+	}
+	
 	
 }
