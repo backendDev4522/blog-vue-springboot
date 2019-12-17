@@ -47,6 +47,11 @@ public class BoardController {
 		return new ResponseEntity(true, HttpStatus.OK);
 	}
 	
+	@DeleteMapping("boards/{bid}")
+	public ResponseEntity deleteBoard(@PathVariable Long bid) throws NotFoundException{
+		boardService.deleteBoard(bid);
+		return new ResponseEntity(true, HttpStatus.OK);
+	}
 	
 	
 	

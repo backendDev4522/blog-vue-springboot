@@ -11,5 +11,5 @@ public interface BoardService {
 	public List<BoardDto> getBoardlist();
 	public BoardDto getBoard(Long bid);
 	public void updateBoard(BoardDto boardDto, Long bid) throws NotFoundException;
-	
+	public void deleteBoard(Long bid) throws NotFoundException;
 }
