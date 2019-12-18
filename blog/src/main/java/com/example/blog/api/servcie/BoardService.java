@@ -2,7 +2,7 @@ package com.example.blog.api.servcie;
 
 import java.util.List;
 
-import com.example.blog.api.domain.BoardDto;
+import com.example.blog.api.dto.BoardDto;
 
 import javassist.NotFoundException;
 

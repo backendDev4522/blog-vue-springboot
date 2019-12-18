@@ -1,4 +1,4 @@
-package com.example.blog.api.domain;
+package com.example.blog.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

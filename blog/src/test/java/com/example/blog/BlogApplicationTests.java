@@ -5,7 +5,7 @@ import java.util.Calendar;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.blog.api.domain.Board;
+import com.example.blog.api.dto.Board;
 
 @SpringBootTest
 class BlogApplicationTests {

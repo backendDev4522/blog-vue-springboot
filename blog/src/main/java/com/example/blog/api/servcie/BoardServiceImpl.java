@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.blog.api.domain.Board;
-import com.example.blog.api.domain.BoardDto;
+import com.example.blog.api.dto.BoardDto;
+import com.example.blog.api.entity.Board;
 import com.example.blog.api.repository.BoardRepository;
 
 import javassist.NotFoundException;
