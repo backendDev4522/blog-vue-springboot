@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.blog.api.domain.Board;
+import com.example.blog.api.entity.Board;
 import com.example.blog.api.repository.BoardRepository;
 
 @SpringBootTest

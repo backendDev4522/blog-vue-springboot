@@ -3,7 +3,7 @@ package com.example.blog;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-import com.example.blog.api.dto.MemberDTO;
+import com.example.blog.api.dto.MemberDto;
 import com.example.blog.api.entity.Member;
 import com.example.blog.api.repository.MemberRepository;
 import com.example.blog.api.servcie.MemberService;
@@ -38,7 +38,7 @@ class MemberJUintTest {
 	@Test
 	public void insertMember() {
 		// given
-		MemberDTO dto = MemberDTO.builder().id("test").password("test").address("대구시 북구 동천동").email("test@naver.com")
+		MemberDto dto = MemberDto.builder().userId("test").password("test").address("대구시 북구 동천동").email("test@naver.com")
 				.name("tester").build();
 
 		// when
@@ -46,7 +46,7 @@ class MemberJUintTest {
 
 		// then
 		Member member = memberRepository.findAll().get(0);
-		assertEquals(member.getId(), dto.getId());
+		assertEquals(member.getUserId(), dto.getUserId());
 		assertEquals(member.getPassword(), dto.getPassword());
 		assertEquals(member.getName(),dto.getName());
 		assertEquals(member.getEmail(),dto.getEmail());

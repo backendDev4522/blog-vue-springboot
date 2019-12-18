@@ -1,11 +1,10 @@
 ﻿package com.example.blog;
 
-import java.util.Calendar;
+import com.example.blog.api.entity.Board;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.blog.api.domain.Board;
 
 @SpringBootTest
 class BlogApplicationTests {

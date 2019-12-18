@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.blog.api.domain.BoardDto;
+import com.example.blog.api.dto.BoardDto;
 import com.example.blog.api.servcie.BoardService;
 
 import javassist.NotFoundException;
