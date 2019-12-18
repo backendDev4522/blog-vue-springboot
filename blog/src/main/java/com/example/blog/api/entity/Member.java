@@ -43,4 +43,15 @@ public class Member {
         this.email = email;
         this.address = address;
     }
+
+    public void updatePassword(String password){
+        this.password = password;
+    }
+    public void updateMemberInfo(String name, String email, String address){
+        this.name=name;
+        this.address = address;
+        this.email=email;
+    }
+
+
 }
