@@ -9,7 +9,7 @@ import javassist.NotFoundException;
 public interface BoardService {
 	public void saveBoard(BoardDto boardDto);
 	public List<BoardDto> getBoardlist();
-	public BoardDto getBoard(Long bid);
-	public void updateBoard(BoardDto boardDto, Long bid) throws NotFoundException;
-	public void deleteBoard(Long bid) throws NotFoundException;
+	public BoardDto getBoard(Long id);
+	public void updateBoard(BoardDto boardDto, Long id) throws NotFoundException;
+	public void deleteBoard(Long id) throws NotFoundException;
 }

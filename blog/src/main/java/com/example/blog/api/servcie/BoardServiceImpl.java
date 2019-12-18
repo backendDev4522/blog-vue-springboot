@@ -37,14 +37,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Transactional
-	public BoardDto getBoard(Long bid) {
-		Board board = boardRepository.findById(bid).get();
+	public BoardDto getBoard(Long id) {
+		Board board = boardRepository.findById(id).get();
 		return entityToDto(board);
 	}
 
 	@Transactional
-	public void updateBoard(BoardDto boardDto, Long bid) throws NotFoundException {
-		Board board = boardRepository.findById(bid).get();
+	public void updateBoard(BoardDto boardDto, Long id) throws NotFoundException {
+		Board board = boardRepository.findById(id).get();
 		if (board == null) {
 			throw new NotFoundException("id not founded");
 		}
@@ -64,8 +64,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Transactional
-	public void deleteBoard(Long bid) throws NotFoundException {
-		Board board = boardRepository.findById(bid).get();
+	public void deleteBoard(Long id) throws NotFoundException {
+		Board board = boardRepository.findById(id).get();
 		if (board == null) {
 			throw new NotFoundException("id not founded");
 		} else {
@@ -75,7 +75,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	public BoardDto entityToDto(Board board) {
-		BoardDto boardDto = BoardDto.builder().bid(board.getBid()).title(board.getTitle()).content(board.getContent())
+		BoardDto boardDto = BoardDto.builder().id(board.getId()).title(board.getTitle()).content(board.getContent())
 				.writer(board.getWriter()).createdDate(board.getCreatedDate()).updatedDate(board.getUpdatedDate())
 				.build();
 		return boardDto;

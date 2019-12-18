@@ -20,13 +20,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Table(name = "board")
-public class Board extends TimeEntity{
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Setter(AccessLevel.NONE)
-	private Long bid;
-
+public class Board extends BaseEntity{
 	/*
 	 * 연관관계 설정부분.
 	 * 

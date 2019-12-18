@@ -14,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class BoardDto {
 
-	private Long bid;
+	private Long id;
 	private String title;
 	private String content;
 	private String writer;
@@ -34,8 +34,8 @@ public class BoardDto {
 	}
 	
 	@Builder
-	public BoardDto(Long bid, String title, String content, String writer, String boardType, LocalDateTime createdDate,LocalDateTime updatedDate) {
-		this.bid = bid;
+	public BoardDto(Long id, String title, String content, String writer, String boardType, LocalDateTime createdDate,LocalDateTime updatedDate) {
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
