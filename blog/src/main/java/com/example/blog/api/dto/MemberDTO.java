@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 //@RequestBody로 외부에서 데이터를 받는 경우엔 기본생성자 + set메소드를 통해서만 값이 할당
 public class MemberDto{
-    private String userId;
+    private String id;
     private String password;
     private String name;
     private String email;
@@ -20,7 +20,7 @@ public class MemberDto{
 
     public Member toEntity(){
         return Member.builder()
-                .userId(this.userId)    
+                .id(this.id)    
                 .password(this.password)
                 .name(this.name)
                 .email(this.email)
@@ -29,8 +29,8 @@ public class MemberDto{
     }
 
     @Builder
-    MemberDto(String userId, String password , String name, String email, String address){
-        this.userId = userId;
+    MemberDto(String id, String password , String name, String email, String address){
+        this.id = id;
         this.password = password;
         this.name = name;
         this.email = email;
