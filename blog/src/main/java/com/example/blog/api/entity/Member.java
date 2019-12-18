@@ -2,7 +2,6 @@ package com.example.blog.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -16,12 +15,11 @@ import lombok.ToString;
 @Table(name = "members")
 @Getter
 @ToString
-@EqualsAndHashCode(of = { "id", "password" })
+@EqualsAndHashCode(of = { "userId", "password" })
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-    @Id
-    @Column(length = 30)
-    private String id;
+    @Column(name = "user_id" , length = 30)
+    private String userId;
 
     @Column(name = "password", nullable = false, length = 20)
     private String password;
@@ -36,8 +34,8 @@ public class Member {
     private String address;
 
     @Builder
-    public Member(String id, String password, String name, String email, String address) {
-        this.id = id;
+    public Member(String userId, String password, String name, String email, String address) {
+        this.userId = userId;
         this.password = password;
         this.name = name;
         this.email = email;
