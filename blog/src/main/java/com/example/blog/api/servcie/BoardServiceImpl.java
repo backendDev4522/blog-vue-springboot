@@ -24,11 +24,10 @@ public class BoardServiceImpl implements BoardService {
 	public void saveBoard(BoardDto boardDto) {
 		boardRepository.save(boardDto.toEntity());
 	}
-
+	
 	@Transactional
 	public List<BoardDto> getBoardlist() {
-
-		List<Board> boardEntities = boardRepository.findAll();
+		List<Board> boardEntities = boardEntities = boardRepository.findAll();
 		List<BoardDto> boardDtoList = new ArrayList<>();
 		for (Board board : boardEntities) {
 			boardDtoList.add(entityToDto(board));
@@ -36,6 +35,25 @@ public class BoardServiceImpl implements BoardService {
 		return boardDtoList;
 	}
 
+	@Transactional
+	public List<BoardDto> findByTitleLike(String title){
+		List<Board> boardEntities = boardEntities = boardRepository.findByTitleLike("%"+title+"%");
+		List<BoardDto> boardDtoList = new ArrayList<>();
+		for (Board board : boardEntities) {
+			boardDtoList.add(entityToDto(board));
+		}
+		return boardDtoList;
+	}
+	
+	@Transactional
+	public List<BoardDto> findByWriterLike(String writer){
+		List<Board> boardEntities = boardEntities = boardRepository.findByWriterLike("%"+writer+"%");
+		List<BoardDto> boardDtoList = new ArrayList<>();
+		for (Board board : boardEntities) {
+			boardDtoList.add(entityToDto(board));
+		}
+		return boardDtoList;
+	}
 	@Transactional
 	public BoardDto getBoard(Long id) {
 		Board board = boardRepository.findById(id).get();
@@ -73,6 +91,8 @@ public class BoardServiceImpl implements BoardService {
 		}
 
 	}
+	
+	
 
 	public BoardDto entityToDto(Board board) {
 		BoardDto boardDto = BoardDto.builder().id(board.getId()).title(board.getTitle()).content(board.getContent())
@@ -81,4 +101,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardDto;
 	}
 
+	
+
+	
 }

@@ -1,5 +1,6 @@
 package com.example.blog.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.blog.api.dto.BoardDto;
@@ -23,17 +25,28 @@ import lombok.AllArgsConstructor;
 public class BoardController {
 	private BoardService boardService;
 	
-	@PostMapping("/board")
+	@PostMapping("/boards")
 	public ResponseEntity saveBoard(@RequestBody BoardDto boardDto){
 		boardService.saveBoard(boardDto);
 		return new ResponseEntity(true, HttpStatus.OK);
 	}
 	
 	@GetMapping("/boards")
-	public ResponseEntity<List<BoardDto>> getBoardList(){
-		return new ResponseEntity<List<BoardDto>>(boardService.getBoardlist(),HttpStatus.OK);
+	public ResponseEntity<List<BoardDto>> getBoardList(
+			@RequestParam(required = false) String title,
+			@RequestParam(required = false) String writer
+			){
+		List<BoardDto> boardList = new ArrayList<BoardDto>();
+		if(title != null) {
+			boardList = boardService.findByTitleLike(title);
+		} else if(writer !=null){
+			boardList = boardService.findByWriterLike(writer);
+			System.out.println(writer);
+		} else {
+			boardList = boardService.getBoardlist();
+		}
+		return new ResponseEntity<List<BoardDto>>(boardList,HttpStatus.OK);
 	}
-	
 	
 	@GetMapping("/boards/{bid}")
 	public ResponseEntity<BoardDto> getBoard(@PathVariable Long bid){
@@ -52,6 +65,8 @@ public class BoardController {
 		boardService.deleteBoard(bid);
 		return new ResponseEntity(true, HttpStatus.OK);
 	}
+	
+	
 	
 	
 	

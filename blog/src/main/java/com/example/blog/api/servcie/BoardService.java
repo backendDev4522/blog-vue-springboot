@@ -7,9 +7,11 @@ import com.example.blog.api.dto.BoardDto;
 import javassist.NotFoundException;
 
 public interface BoardService {
-	public void saveBoard(BoardDto boardDto);
-	public List<BoardDto> getBoardlist();
-	public BoardDto getBoard(Long id);
-	public void updateBoard(BoardDto boardDto, Long id) throws NotFoundException;
-	public void deleteBoard(Long id) throws NotFoundException;
+	void saveBoard(BoardDto boardDto);
+	List<BoardDto> getBoardlist();
+	BoardDto getBoard(Long id);
+	void updateBoard(BoardDto boardDto, Long id) throws NotFoundException;
+	void deleteBoard(Long id) throws NotFoundException;
+	List<BoardDto> findByTitleLike(String title);
+	List<BoardDto> findByWriterLike(String writer);
 }
