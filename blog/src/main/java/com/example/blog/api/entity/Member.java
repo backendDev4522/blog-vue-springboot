@@ -49,8 +49,8 @@ public class Member {
     }
     public void updateMemberInfo(String name, String email, String address){
         this.name=name;
-        this.address = address;
         this.email=email;
+        this.address = address;
     }
 
 
