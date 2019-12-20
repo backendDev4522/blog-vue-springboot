@@ -27,7 +27,14 @@ public class MemberDto{
                 .address(this.address)
                 .build();
     }
-
+    public MemberDto(Member entity){
+        this.id = entity.getId();
+        this.password = entity.getPassword();
+        this.name = entity.getName();
+        this.email = entity.getEmail();
+        this.address = entity.getAddress();
+    }
+    
     @Builder
     MemberDto(String id, String password , String name, String email, String address){
         this.id = id;
