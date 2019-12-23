@@ -1,6 +1,7 @@
 package com.example.blog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ class MemberJUintTest {
 
 	@AfterEach
 	public void cleanup() {
-		// memberRepository.deleteAll();
+		memberRepository.deleteAll();
 	}
 
 
@@ -60,15 +61,15 @@ class MemberJUintTest {
 		// given
 		MemberDto dto = MemberDto.builder().
 		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
-
-		// when
-		Member member = dto.toEntity();
 		memberService.insert(dto);
 
+		// when
+		dto.setName("changeTest");
+		memberService.update(dto);
+
 		// then
-		member.updateMemberInfo("update test", "email" , "진평동");
 		
-		assertEquals(member.getEmail(),"email");
+		assertEquals(dto.getName(),memberService.searchById("test").getName());
 	}
 
 	@DisplayName("전체 회원 정보 조회")
@@ -106,4 +107,25 @@ class MemberJUintTest {
 		// then
 		assertEquals(dto.getName(),member.getName());
 	}
+
+	/*
+		DB에서 데이터 삭제가 되는것은 확인 
+		assert를 통한 값 비교 방식은 테스팅이 불가... 
+	*/
+	@Test
+	@DisplayName("회원 삭제")
+	public void deleteByIdMember(){
+		// given
+		MemberDto dto = MemberDto.builder().
+		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
+		memberService.insert(dto);
+
+		//when
+		memberService.delete(dto);
+
+		//then
+		MemberDto mem = new MemberDto(memberService.searchById("test"));
+		assertNotNull(mem);
+	}
+
 }

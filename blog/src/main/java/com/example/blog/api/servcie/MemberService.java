@@ -11,5 +11,5 @@ public interface MemberService {
     Member searchById(String id);
     List<MemberDto> getAll();
     void update(MemberDto dto);
-    void delete(String id);
+    void delete(MemberDto dto);
 }

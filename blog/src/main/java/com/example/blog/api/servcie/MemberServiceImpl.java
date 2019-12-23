@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @AllArgsConstructor
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -41,13 +43,13 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public void update(MemberDto dto) {
-
+        memberRepository.save(dto.toEntity());
     }
 
     @Transactional
     @Override
-    public void delete(String id) {
-
+    public void delete(MemberDto dto) {
+        memberRepository.delete(dto.toEntity());
     }
     
 }
