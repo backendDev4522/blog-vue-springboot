@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.blog.api.dto.MemberDto;
-import com.example.blog.api.entity.Member;
 import com.example.blog.api.repository.MemberRepository;
 
 import org.springframework.stereotype.Service;
@@ -28,8 +27,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public Member searchById(String id){
-         return memberRepository.findById(id).get();
+    public MemberDto searchById(String id){
+         return memberRepository.findById(id).map(MemberDto::new).get();
     }
 
     @Transactional

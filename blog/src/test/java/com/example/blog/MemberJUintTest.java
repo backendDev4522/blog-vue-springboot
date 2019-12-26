@@ -101,7 +101,7 @@ class MemberJUintTest {
 		memberService.save(dto);
 
 		// when
-		Member member = memberService.searchById("test");
+		MemberDto member = memberService.searchById("test");
 
 		// then
 		assertEquals(dto.getName(),member.getName());
@@ -123,8 +123,24 @@ class MemberJUintTest {
 		memberService.delete(dto);
 
 		//then
-		MemberDto mem = new MemberDto(memberService.searchById("test"));
+		MemberDto mem = memberService.searchById("test");
 		assertNotNull(mem);
+	}
+
+	/*
+	 * HttpStatus test not yet
+	 */
+	@Test
+	@DisplayName("회원 id로 검색 - 컨트롤러")
+	public void searchByIdController(){
+		//given
+		MemberDto dto = MemberDto.builder().id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
+		memberService.save(dto);
+		
+		//when
+
+		//then
+		// assertEquals(re.getStatusCode().value(),);
 	}
 
 }

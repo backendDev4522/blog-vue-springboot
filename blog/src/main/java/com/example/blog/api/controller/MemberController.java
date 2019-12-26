@@ -8,6 +8,7 @@ import com.example.blog.api.servcie.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +20,31 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping(value="member", method=RequestMethod.GET)
-class MemberController{
+class MemberRestController{
 
     MemberService memberService;
 
     @GetMapping("hello")
-    public String hello( ){
-        return "Hello2222";
+    public String hello(){
+        return "hello";
     }
 
     @PostMapping("save")
-    public ResponseEntity save(@RequestBody MemberDto memberDto){
+    public ResponseEntity save(@RequestBody final MemberDto memberDto){
         memberService.save(memberDto);
-
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("getAll")
     public ResponseEntity getAll(){
         List<MemberDto> list = memberService.getAll();
-        return new ResponseEntity(list,HttpStatus.OK);
+        if(list.size() == 0) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
+    @GetMapping("searchById/{id}")
+    public ResponseEntity searchById(@PathVariable("id") final String id){
+        MemberDto dto = memberService.searchById(id);
+        return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 }
