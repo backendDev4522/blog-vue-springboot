@@ -9,7 +9,7 @@ spring:
     url: jdbc:mysql://localhost:3306/springboot_blog?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
-   
+
   jpa:
     open-in-view: false
     hibernate:

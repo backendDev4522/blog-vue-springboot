@@ -7,7 +7,7 @@ import com.example.blog.api.entity.Member;
 
 public interface MemberService {
     
-    String insert(MemberDto dto);
+    String save(MemberDto dto);
     Member searchById(String id);
     List<MemberDto> getAll();
     void update(MemberDto dto);

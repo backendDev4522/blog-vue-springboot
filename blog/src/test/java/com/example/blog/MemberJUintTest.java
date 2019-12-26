@@ -44,7 +44,7 @@ class MemberJUintTest {
 				.name("tester").build();
 
 		// when
-		memberService.insert(dto);
+		memberService.save(dto);
 
 		// then
 		Member member = memberRepository.findAll().get(0);
@@ -61,14 +61,13 @@ class MemberJUintTest {
 		// given
 		MemberDto dto = MemberDto.builder().
 		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
-		memberService.insert(dto);
+		memberService.save(dto);
 
 		// when
 		dto.setName("changeTest");
 		memberService.update(dto);
 
 		// then
-		
 		assertEquals(dto.getName(),memberService.searchById("test").getName());
 	}
 
@@ -80,8 +79,8 @@ class MemberJUintTest {
 		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
 		MemberDto dto2= MemberDto.builder().
 		id("test2").password("test2").address("대구시 북구 동천동2").email("test@naver.com2").name("tester2").build();
-		memberService.insert(dto);
-		memberService.insert(dto2);
+		memberService.save(dto);
+		memberService.save(dto2);
 
 		// when
 		Member member = dto.toEntity();
@@ -99,7 +98,7 @@ class MemberJUintTest {
 		// given
 		MemberDto dto = MemberDto.builder().
 		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
-		memberService.insert(dto);
+		memberService.save(dto);
 
 		// when
 		Member member = memberService.searchById("test");
@@ -118,7 +117,7 @@ class MemberJUintTest {
 		// given
 		MemberDto dto = MemberDto.builder().
 		id("test").password("test").address("대구시 북구 동천동").email("test@naver.com").name("tester").build();
-		memberService.insert(dto);
+		memberService.save(dto);
 
 		//when
 		memberService.delete(dto);

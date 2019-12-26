@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public String insert(MemberDto dto) {
+    public String save(MemberDto dto) {
         return memberRepository.save(dto.toEntity()).getId();
     }
 
