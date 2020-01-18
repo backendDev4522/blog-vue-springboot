@@ -131,3 +131,7 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/vue,maven,gradle,eclipse,visualstudiocode
+
+# 빈 프로젝트 추적
+.gitkeep
+.vscode
