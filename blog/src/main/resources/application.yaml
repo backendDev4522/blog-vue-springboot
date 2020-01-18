@@ -6,10 +6,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://119.56.158.80:3306/?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
-    username: dltjdwns
+    url: jdbc:mysql://localhost:3306/springboot_blog?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
     password: 1234
-   
+
   jpa:
     open-in-view: false
     hibernate:
